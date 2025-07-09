@@ -48,10 +48,12 @@ const InterestForm = ({ onSubmit, value }: InterestFormProps) => {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
       viewport={{ once: true, amount: 0.5 }}
-      className="w-full max-w-lg text-center"
+      className="w-full max-w-lg text-center px-4"
     >
-      <h2 className="text-3xl font-bold mb-8">What are you interested in?</h2>
-      <div className="flex flex-wrap justify-center gap-4 mb-8">
+      <h2 className="text-3xl sm:text-4xl font-bold mb-8">
+        What are you interested in?
+      </h2>
+      <div className="flex flex-wrap justify-center gap-2 sm:gap-4 mb-8">
         {interests.map((interest) => (
           <motion.button
             key={interest}
@@ -68,7 +70,7 @@ const InterestForm = ({ onSubmit, value }: InterestFormProps) => {
                 : "#1f2937",
             }}
             transition={{ duration: 0.2 }}
-            className="px-6 py-3 rounded-full font-semibold"
+            className="px-4 py-2 sm:px-6 sm:py-3 rounded-full font-semibold text-sm sm:text-base"
           >
             {interest}
           </motion.button>

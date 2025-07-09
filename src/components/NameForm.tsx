@@ -23,9 +23,9 @@ const NameForm = ({ onSubmit }: NameFormProps) => {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
       viewport={{ once: true, amount: 0.5 }}
-      className="w-full max-w-md"
+      className="w-full max-w-md px-4"
     >
-      <h2 className="text-4xl font-bold text-center mb-8 tracking-tight">
+      <h2 className="text-3xl sm:text-4xl font-bold text-center mb-8 tracking-tight">
         What should we call you?
       </h2>
       <form className="relative w-full" onSubmit={handleSubmit}>
