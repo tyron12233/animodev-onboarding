@@ -101,6 +101,14 @@ const App: React.FC = () => {
     document.documentElement.style.setProperty("--hue", String(config.start));
     document.documentElement.style.setProperty("--end", String(config.end));
 
+    const setVh = () => {
+      const vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty("--vh", `${vh}px`);
+    };
+
+    setVh();
+    window.addEventListener("resize", setVh);
+
     // GSAP animations will only run if CSS animations are not supported OR if config.animate is true
     const isCssAnimationSupported = CSS.supports(
       "(animation-timeline: scroll())"
@@ -187,7 +195,10 @@ const App: React.FC = () => {
       }, mainRef);
 
       // Cleanup function
-      return () => ctx.revert();
+      return () => {
+        ctx.revert();
+        window.removeEventListener("resize", setVh);
+      };
     } else if (!config.animate) {
       // If animations are disabled via config, ensure everything is visible
       gsap.set(listItemsRef.current, { opacity: 1 });
@@ -295,6 +306,9 @@ const App: React.FC = () => {
         @layer stick {
           .page-container {
             scroll-snap-type: y mandatory;
+            height: 100vh;
+            height: calc(var(--vh, 1vh) * 100);
+            overflow-y: scroll;
           }
           .page-section {
             scroll-snap-align: start;
@@ -469,7 +483,7 @@ const App: React.FC = () => {
           <AnimatedBackground />
         </header>
         <main>
-          <section className="content-section fluid">
+          <section className="content-section fluid page-section">
             <h2 className="fluid">
               <span aria-hidden="true">you can&nbsp;</span>
               <span className="sr-only">you can ship things.</span>
